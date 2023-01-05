@@ -7,6 +7,7 @@
 ```bash
 # rsa
 ssh-keygen -t rsa -a 100 -b 8192
+
 # ed25519 (possibly controversial; RSA 8192 likely safer)
 ssh-keygen -t ed25519
 ```
@@ -46,8 +47,10 @@ ssh-keygen -e -m RFC4716 -f pubkey > pubkey.otherformat
 ```bash
 # Generate private key
 openssl genrsa -out server.key 2048
+
 # Generate CSR
 openssl req -new -key server.key -out server.csr
+
 # Self-sign cert (or.. submit the CSR to your CA instead)
 openssl x509 -req -days 365 -in server.csr -signkey server.key -out server.pem
 ```
@@ -57,10 +60,13 @@ openssl x509 -req -days 365 -in server.csr -signkey server.key -out server.pem
 ```bash
 # View CSR contents
 openssl req -text -noout -verify -in some.csr
+
 # View PEM cert contents
 openssl x509 -text -in some.pem
+
 # View cert on remote system
 openssl s_client -host somehost.local -port 443
+
 # View just the expiration date on remote system
 openssl s_client -host data.umich.edu -port 443 | openssl x509 -noout -dates
 ```
@@ -70,6 +76,7 @@ openssl s_client -host data.umich.edu -port 443 | openssl x509 -noout -dates
 ```bash
 # Verify cert chain
 openssl verify [-CAfile my-ca.pem] server.pem
+
 # Verify cert matches private key (via matching digest)
 openssl x509 -noout -modulus -in server.pem | openssl sha1
 openssl rsa -noout -modulus -in server.key | openssl sha1
@@ -80,6 +87,7 @@ openssl rsa -noout -modulus -in server.key | openssl sha1
 ```bash
 # md5 digest
 openssl passwd -1 'nice.pass'
+
 # sha512 digest
 openssl passwd -salt xxyyzz -6 'nicer.pass'
 ```
