@@ -5,12 +5,16 @@
 ```bash
 # Find large files, do not descend into other filesystems
 find . -xdev -size +500M -exec du -m {} \; | sort -nr
+
 # Find large directories
 find . -type d -exec du -sm {} \; | sort -nr | head -10
+
 # Find files with no owner or no group
 find . \( -nouser -o -nogroup \) -print
+
 # Find world-writable files
 find . -perm -o+w \( -type d -or -type f \) -exec ls -ld {} \;
+
 # Find files with suid or sgid bit
 find . -perm +6000 -type f -exec ls -ld {} \;
 ```
@@ -33,6 +37,7 @@ tar(1) can be utilized to copy a directory (and preserve permissions, ownership,
 ```bash
 # Copy the current working directory to /tmp/foo
 tar cf - . | (cd /tmp/foo && tar xf -)
+
 # Copy the local 'rman' directory to /fuz/rman
 tar cf - rman | (cd /fuz && tar xf -)
 ```
@@ -49,6 +54,7 @@ tar cf - /dbatools | ssh foo@host.local "cat > /san/bkup-area/dbatools.tar"
 ```bash
 # Run from the host that will house the finished tarball
 ssh foo@host.local "tar cf - /dbatools" > /san/bkup-area/dbatools.tar
+
 # Or do the following to expand the tarball
 ssh foo@host.local "cat /san/bkup-area/dbatools.tar" | tar xf -
 ```
@@ -71,8 +77,10 @@ rsync -av --delete source_dir/ someone@baz.local:/target_dir
 ```bash
 # Create logical volume
 lvcreate -L10G -n lvfoo uservg00
+
 # Format (after mounting, use restorecon -R on directory)
 mkfs.xfs /dev/mapper/uservg00-lvfoo
+
 # Grow logical volume and filesystem
 lvresize -L+50G /dev/mapper/uservg00-lvfoo
 xfs_growfs /dev/mapper/uservg00-lvfoo
@@ -90,10 +98,12 @@ Shrinking a logical volume with XFS is not possible, but there is a workaround:
 lvcreate -L2G -n lvbaz uservg00
 mkfs.xfs /dev/mapper/uservg00-lvbaz
 mount /dev/mapper/uservg00-lvbaz /tmp/baz-boo
+
 # Correctly copy the old directory contents
 # to the temp directory AS ROOT
 cd /usr/local/thingies
 tar cf - . | (cd /tmp/baz-boo && tar xf -)
+
 # Clean up the old stuff (BE CAREFUL!)
 umount /usr/local/thingies
 lvremove /dev/mapper/uservg00-lvold
@@ -108,10 +118,13 @@ restorecon -R /usr/local/thingies
 ```bash
 # Match /dev/mapper devices to /dev/dm- and /dev/xxa1
 lsblk
+
 # Get device size in bytes
 blockdev -v --getsize64 /dev/block_device_here
+
 # Get block device size in bytes
 blockdev -v --getbsz /dev/block_device_here
+
 # Determine LBA (logical blocks) occupied by a file
 hdparm --fibmap /path/to/file
 ```
