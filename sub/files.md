@@ -107,6 +107,7 @@ tar cf - . | (cd /tmp/baz-boo && tar xf -)
 # Clean up the old stuff (BE CAREFUL!)
 umount /usr/local/thingies
 lvremove /dev/mapper/uservg00-lvold
+
 # Mount the new, smaller filesystem
 umount /tmp/baz-boo
 mount /dev/mapper/uservg00-lvbaz /usr/local/thingies
