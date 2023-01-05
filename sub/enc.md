@@ -133,7 +133,7 @@ keytool \
 ### View Java keystore
 
 ```bash
-keytool -list -v -keystore server.jks -storepass <JKS password>
+keytool -list -v -keystore server.jks -storepass 'JKS password'
 ```
 
 ## GNUPG
