@@ -10,6 +10,7 @@ In this example:
 ```bash
 # Start port forwarding
 [baz@laptop-c ~]$ ssh -Llocalhost:9090:host-b:3306 baz@host-a
+
 # Connect to MariaDB using laptop client software
 [baz@laptop-c ~]$ mysql -h localhost -P 9090 -u dba -p
 ```
@@ -46,6 +47,7 @@ Allows shell access to a system that is behind a NAT/PAT device. In this example
 ```bash
 # Start reverse tunnel
 [foo@host-a ~]$ ssh -R 6900:localhost:22 bar@host-b
+
 # Connect to "unreachable" system through reverse tunnel
 [bar@host-b ~]$ ssh foo@localhost -p 6900
 ```
