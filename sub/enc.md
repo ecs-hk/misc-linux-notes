@@ -14,7 +14,7 @@ ssh-keygen -t ed25519
 ## Display key signature and artwork
 
 ```bash
-sh-keygen -vl -f ./some/id_rsa
+sh-keygen -vl -f privkey
 ```
 
 ## Create a public key from a private key
