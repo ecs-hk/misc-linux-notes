@@ -55,9 +55,7 @@ readonly _flavor='banana-grape'
 # This declaration works within functions, and makes the
 # variable scoped to just within that function
 myfun() {
-
-        local _test="$(grep meme /etc/passwd)"
-
+        local _foo='biz'
 }
 ```
 
@@ -70,6 +68,8 @@ echo ${#_city}
 
 ### Useful internal variables
 
+| Variable | Description |
+|: --- :| --- |
 | `$0` | Script name |
 | `$#` | Number of arguments |
 | `"$@"` | All argument values, each quoted |
@@ -84,6 +84,8 @@ echo ${#_city}
 
 The following characters, when used non-quoted and non-escaped (`\` to escape) expand to special patterns.
 
+| Glob | Description |
+|: --- :| --- |
 | `*` | Match any string of any length |
 | `?` | Match any single character |
 | `[abc]` | Match any one of a, b, or c |
@@ -92,6 +94,8 @@ The following characters, when used non-quoted and non-escaped (`\` to escape) e
 
 ### String case conversion
 
+| Usage | Description |
+|: --- :| --- |
 | `${variable^^}` | All upper-case of string in variable |
 | `${variable,,}` | All lower-case of string in variable |
 
@@ -105,6 +109,8 @@ echo "In all uppercase, now: ${_brand^^}"
 
 There are a couple forms of this expansion, and positive or negative numbers can be used, depending on desired behavior.
 
+| Usage | Description |
+|: --- :| --- |
 | `${variable: offset}` | Extract substring of variable, starting from `offset` |
 | `${variable: offset: length}` | Extract substring of variable, `length` chars, starting from `offset` |
 
@@ -127,6 +133,8 @@ echo ${_boop: -4}
 
 `bash(1)` has features for trimming the beginning of a string or the end of a string, based on pattern matches. Additionally, non-greedy or greedy matching can be specified.
 
+| Usage | Description |
+|: --- :| --- |
 | `${variable#pattern}` | Remove `pattern` from beginning of string (non-greedy) |
 | `${variable##pattern}` | Remove `pattern` from beginning of string (greedy) |
 | `${variable%pattern}` | Remove `pattern` from end of string (non-greedy) |
@@ -151,6 +159,8 @@ echo ${_quote##*t}
 
 There are a variety of invocations for matching a pattern (using characters and shell globs) and replacing. In each case, the value of `variable` is expanded and then operated on based on the `pattern` and any modifiers.
 
+| Usage | Description |
+|: --- :| --- |
 | `${variable/pattern/newstring}` | Replace first instance of `pattern` with `newstring` |
 | `${variable//pattern/newstring}` | `//` modifier means replace all instances |
 | `${variable/#pattern/newstring}` | `#` modifier means only match start of string in variable |
@@ -173,6 +183,8 @@ echo ${_wisdom/%hap*/; others react}
 
 ### String test operators
 
+| Test | Description |
+|: --- :| --- |
 | `string1 == string2` | True if strings are equal (POSIX calls for use of `=` as the test operator in this case.) |
 | `string1 != string2` | True if strings are not equal |
 | `-z string` | True if length of string is zero |
@@ -180,6 +192,8 @@ echo ${_wisdom/%hap*/; others react}
 
 ### Numeric test operators
 
+| Test | Description |
+|: --- :| --- |
 | `num1 -eq [-ne] num2` | True if numbers are equal [or not equal] |
 | `num1 -gt [-ge] num2` | True if num1 is greater than [or greater than/equal to] num2 |
 | `num1 -lt [-le] num2` | True if num1 is less than [or less than/equal to] num2 |
@@ -190,6 +204,8 @@ echo ${_wisdom/%hap*/; others react}
 
 All file tests are conducted using the permissions of the effective user. This means test results may differ, depending on who is running the script or interactive shell.
 
+| Test | Description |
+|: --- :| --- |
 | `-e file` | True if file exists |
 | `-r file` | True if file exists, and is readable |
 | `-w file` | True if file exists, and is writeable |
@@ -212,7 +228,6 @@ For instance:
 cat <<EOF
 Hello there, guv.
 Quite nice to see you today!
-Don't forget your knickers.
 EOF
 ```
 
