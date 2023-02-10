@@ -24,6 +24,12 @@ ssh-keygen -vl -f privkey
 ssh-keygen -y -f privkey > pubkey
 ```
 
+## Change (or add) passphrase for private key
+
+```bash
+ssh-keygen -p -f privkey
+```
+
 ## Convert OpenSSH private key to RSA private key
 
 ```bash
