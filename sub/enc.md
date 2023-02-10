@@ -9,7 +9,7 @@
 ssh-keygen -t rsa -a 100 -b 8192
 
 # ed25519 (possibly controversial; RSA 8192 likely safer)
-ssh-keygen -t ed25519
+ssh-keygen -t ed25519 -a 100
 ```
 
 ## Display key signature and artwork
