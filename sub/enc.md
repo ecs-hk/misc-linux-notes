@@ -74,7 +74,7 @@ openssl x509 -text -in some.pem
 openssl s_client -host somehost.local -port 443
 
 # View just the expiration date on remote system
-openssl s_client -host data.umich.edu -port 443 | openssl x509 -noout -dates
+openssl s_client -host somehost.local -port 443 | openssl x509 -noout -dates
 ```
 
 ### Verify
@@ -165,13 +165,13 @@ This is a cleaner approach than exporting the public key, private key, and trust
 gpg --list-secret-keys --keyid-format LONG
  
 # Identify the email address associated with the keypair, and then:
-gpg -o secret-keep-safe.gpg --export-options backup --export-secret-keys someguy@umich.edu
+gpg -o secret-keep-safe.gpg --export-options backup --export-secret-keys someguy@buz
  
 # To restore the keypair:
 gpg --import-options restore --import secret-keep-safe.gpg
  
 # Set the trust level for the keypair:
-gpg --edit-key someguy@umich.edu
+gpg --edit-key someguy@buz
 gpg> trust
 # (enter 5)
 gpg> quit
