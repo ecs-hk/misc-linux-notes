@@ -142,6 +142,28 @@ keytool \
 keytool -list -v -keystore server.jks -storepass 'JKS password'
 ```
 
+## tcpdump
+
+### Confirm encryption on the wire
+
+Note: to capture the full packet payload, the `-s 0` option was required on older tcpdump versions. It is no longer necessary.
+
+```bash
+sudo tcpdump -i ens160 -nn -A port 3306 and host 10.69.80.2
+```
+
+### Save packet capture to file
+
+```bash
+sudo tcpdump -i ens160 -w foo port 3306 and host 10.69.80.2
+```
+
+### Read packet capture data from file
+
+```bash
+tcpdump -nn -A -r foo
+```
+
 ## GNUPG
 
 ### Create a new keypair
