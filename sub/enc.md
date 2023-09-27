@@ -5,7 +5,6 @@
 ### Generate new keypair
 
 ```bash
-# rsa
 ssh-keygen -t rsa -a 100 -b 8192
 ```
 
@@ -91,7 +90,7 @@ openssl s_client -host somehost.local -port 443 | openssl x509 -noout -dates
 
 View CSR contents:
 ```bash
-openssl req -text -noout -verify -in some.csr
+openssl req -text -noout -verify -in server.csr
 ```
 
 ### Verify
