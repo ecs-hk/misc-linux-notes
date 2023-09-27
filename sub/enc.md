@@ -7,8 +7,10 @@
 ```bash
 # rsa
 ssh-keygen -t rsa -a 100 -b 8192
+```
 
-# ed25519 (possibly controversial; RSA 8192 likely safer)
+Alternatively (though RSA 8192 _might_ be safer):
+```bash
 ssh-keygen -t ed25519 -a 100
 ```
 
@@ -50,51 +52,70 @@ ssh-keygen -e -m RFC4716 -f pubkey > pubkey.otherformat
 
 ### Prepare new x509 cert
 
+Generate private key:
 ```bash
-# Generate private key
 openssl genrsa -out server.key 2048
+```
 
-# Generate CSR
+Generate CSR:
+```bash
 openssl req -new -key server.key -out server.csr
+```
 
-# Self-sign cert (or.. submit the CSR to your CA instead)
+Self-sign cert (or.. submit the CSR to your CA instead):
+```bash
 openssl x509 -req -days 365 -in server.csr -signkey server.key -out server.pem
 ```
 
 ### Inspect
 
+View PEM cert contents:
 ```bash
-# View CSR contents
-openssl req -text -noout -verify -in some.csr
+openssl x509 -text -in server.pem
+```
 
-# View PEM cert contents
-openssl x509 -text -in some.pem
+View issuer (intermediate CA) for cert:
+```bash
+openssl x509 -in server.pem -noout -subject -issuer -enddate
+```
 
-# View cert on remote system
+View cert on remote system:
+```bash
 openssl s_client -host somehost.local -port 443
+```
 
-# View just the expiration date on remote system
+View just the expiration date on remote system:
+```bash
 openssl s_client -host somehost.local -port 443 | openssl x509 -noout -dates
+```
+
+View CSR contents:
+```bash
+openssl req -text -noout -verify -in some.csr
 ```
 
 ### Verify
 
+Verify cert chain:
 ```bash
-# Verify cert chain
 openssl verify [-CAfile my-ca.pem] server.pem
+```
 
-# Verify cert matches private key (via matching digest)
+Verify cert matches private key (via matching digest):
+```bash
 openssl x509 -noout -modulus -in server.pem | openssl sha1
 openssl rsa -noout -modulus -in server.key | openssl sha1
 ```
 
 ### Create password digests
 
+md5 digest:
 ```bash
-# md5 digest
 openssl passwd -1 'nice.pass'
+```
 
-# sha512 digest
+sha512 digest:
+```bash
 openssl passwd -salt xxyyzz -6 'nicer.pass'
 ```
 
