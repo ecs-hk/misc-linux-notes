@@ -32,6 +32,12 @@ tar(1) can be utilized to copy a directory (and preserve permissions, ownership,
 
 **NB**: to preserve complete directory ownership, permissions, and timestamps, the operation should be run as root
 
+### Extract files from tarball based on pattern
+
+```bash
+tar xf /bkups/archive.tar --wildcards '*/notes.txt'
+```
+
 ### Copy a directory locally
 
 ```bash
