@@ -218,3 +218,22 @@ gpg> trust
 # (enter 5)
 gpg> quit
 ```
+
+## Steganography
+
+Both `steghide` and `outguess` are decent options.
+
+```bash
+steghide embed                          \
+        -ef data-to-hide.txt            \
+        -cf white-cloud.jpg             \
+        -sf white-cloud-w-data.jpg      \
+        -e serpent                      \
+        -p 'strong.pass'
+```
+
+```bash
+steghide extract                        \
+        -sf white-cloud-w-data.jpg      \
+        -p 'strong.pass'
+```
