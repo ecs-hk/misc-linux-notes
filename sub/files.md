@@ -26,6 +26,13 @@ find . -perm +6000 -type f -exec ls -ld {} \;
 lsof +D /usr/local/foo
 ```
 
+## strace
+
+```bash
+# Trace system calls for PID and all child processes
+strace -p 8869 -f
+```
+
 ## tar
 
 tar(1) can be utilized to copy a directory (and preserve permissions, ownership, and links)
