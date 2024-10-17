@@ -31,7 +31,7 @@ ssh-keygen -t ed25519-sk -O resident -O verify-required -C "Yubi-SB"
 ```
 
 [^ssh_key_passphrase_note]:
-    For SSH keys that are created with a FIDO authenticator, a key passphrase may not be very useful. Instead, private key access can be managed using the physical device (with either touch or a PIN).
+    For SSH keys that are created with a FIDO authenticator, a passphrase may not be very useful. Instead, private key access can be managed using the physical device (with either touch or a PIN).
 
 [^yubi_example]:
     FIDO example with resident credentials derived from [Yubikey article](https://developers.yubico.com/SSH/Securing_SSH_with_FIDO2.html).
