@@ -1,55 +1,6 @@
-# Encryption, signatures, keys
+# openssl
 
-## SSH
-
-### Generate new keypair
-
-```bash
-ssh-keygen -t rsa -a 100 -b 8192
-```
-
-Alternatively (though RSA 8192 _might_ be safer):
-```bash
-ssh-keygen -t ed25519 -a 100
-```
-
-## Display key signature and artwork
-
-```bash
-ssh-keygen -vl -f privkey
-```
-
-## Create a public key from a private key
-
-```bash
-ssh-keygen -y -f privkey > pubkey
-```
-
-## Change (or add) passphrase for private key
-
-```bash
-ssh-keygen -p -f privkey
-```
-
-## Convert OpenSSH private key to RSA private key
-
-```bash
-# This operation overwrites the privkey file
-cp privkey privkey.openssh
-ssh-keygen -p -N "" -m pem -f privkey
-```
-
-## Convert public key to Windows-friendly
-
-You're not really using Windows, right? This is for your less-fortunate acquaintances.
-
-```bash
-ssh-keygen -e -m RFC4716 -f pubkey > pubkey.otherformat
-```
-
-## openssl
-
-### Prepare new x509 cert
+## Prepare new x509 cert
 
 Generate private key:
 ```bash
@@ -66,7 +17,7 @@ Self-sign cert (or.. submit the CSR to your CA instead):
 openssl x509 -req -days 365 -in server.csr -signkey server.key -out server.pem
 ```
 
-### Inspect
+## Inspect
 
 View PEM cert contents:
 ```bash
@@ -93,7 +44,7 @@ View CSR contents:
 openssl req -text -noout -verify -in server.csr
 ```
 
-### Verify
+## Verify
 
 Verify cert chain:
 ```bash
@@ -106,7 +57,7 @@ openssl x509 -noout -modulus -in server.pem | openssl sha1
 openssl rsa -noout -modulus -in server.key | openssl sha1
 ```
 
-### Create password digests
+## Create password digests
 
 md5 digest:
 ```bash
@@ -118,7 +69,7 @@ sha512 digest:
 openssl passwd -salt xxyyzz -6 'nicer.pass'
 ```
 
-### Create Java keystore
+## Create Java keystore
 
 ```bash
 # First, convert PEM file and key to PKCS12 format
@@ -156,15 +107,15 @@ keytool \
   -file some-other-ca.pem
 ```
 
-### View Java keystore
+## View Java keystore
 
 ```bash
 keytool -list -v -keystore server.jks -storepass 'JKS password'
 ```
 
-## tcpdump
+# tcpdump
 
-### Confirm encryption on the wire
+## Confirm encryption on the wire
 
 Note: to capture the full packet payload, the `-s 0` option was required on older tcpdump versions. It is no longer necessary.
 
@@ -172,34 +123,34 @@ Note: to capture the full packet payload, the `-s 0` option was required on olde
 sudo tcpdump -i ens160 -nn -A port 3306 and host 10.69.80.2
 ```
 
-### Save packet capture to file
+## Save packet capture to file
 
 ```bash
 sudo tcpdump -i ens160 -w foo port 3306 and host 10.69.80.2
 ```
 
-### Read packet capture data from file
+## Read packet capture data from file
 
 ```bash
 tcpdump -nn -A -r foo
 ```
 
-## GNUPG
+# GNUPG
 
-### Create a new keypair
+## Create a new keypair
 
 ```bash
 gpg --full-gen-key --expert
 ```
 
-### Import public key
+## Import public key
 
 ```bash
 # Example keyserver and key ID..
 gpg --keyserver pgp.mit.edu --recv-keys 89ccae8b
 ```
 
-### Back up and restore a keypair
+## Back up and restore a keypair
 
 This is a cleaner approach than exporting the public key, private key, and trustdb separately
 
@@ -219,7 +170,7 @@ gpg> trust
 gpg> quit
 ```
 
-## Steganography
+# Steganography
 
 Both `steghide` and `outguess` are decent options.
 

@@ -1,4 +1,69 @@
-# SSH tunnel recipes
+# SSH key magic
+
+## Generate new keypair
+
+RSA:
+```bash
+ssh-keygen -t rsa -a 100 -b 8192
+```
+
+ED25519:
+```bash
+ssh-keygen -t ed25519 -a 100
+```
+
+ED25519 with FIDO authenticator:
+* nonresident credentials
+* touch required
+```bash
+ssh-keygen -t ed25519-sk -C "Yubi-W"
+```
+
+ED25519 with FIDO authenticator: [^yubi_example]
+* resident credentials
+* PIN required
+```bash
+ssh-keygen -t ed25519-sk -O resident -O verify-required -C "Yubi-SB"
+```
+
+[^yubi_example]:
+    FIDO example with resident credentials derived from [Yubikey article](https://developers.yubico.com/SSH/Securing_SSH_with_FIDO2.html).
+
+## Display key signature and artwork
+
+```bash
+ssh-keygen -vl -f privkey
+```
+
+## Create a public key from a private key
+
+```bash
+ssh-keygen -y -f privkey > pubkey
+```
+
+## Change (or add) passphrase for private key
+
+```bash
+ssh-keygen -p -f privkey
+```
+
+## Convert OpenSSH private key to RSA private key
+
+```bash
+# This operation overwrites the privkey file
+cp privkey privkey.openssh
+ssh-keygen -p -N "" -m pem -f privkey
+```
+
+## Convert public key to Windows-friendly
+
+You're not really using Windows, right? This is for your less-fortunate acquaintances.
+
+```bash
+ssh-keygen -e -m RFC4716 -f pubkey > pubkey.otherformat
+```
+
+# SSH tunneling
 
 ## Port forward
 
