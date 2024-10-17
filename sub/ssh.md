@@ -2,29 +2,36 @@
 
 ## Generate new keypair
 
-RSA:
+### RSA
+
 ```bash
 ssh-keygen -t rsa -a 100 -b 8192
 ```
 
-ED25519:
+### ED25519
+
 ```bash
 ssh-keygen -t ed25519 -a 100
 ```
 
-ED25519 with FIDO authenticator:
-* nonresident credentials
-* touch required
+### ED25519 with FIDO non-resident credentials
+
+* touch required [^ssh_key_passphrase_note]
+
 ```bash
 ssh-keygen -t ed25519-sk -C "Yubi-W"
 ```
 
-ED25519 with FIDO authenticator: [^yubi_example]
-* resident credentials
-* PIN required
+### ED25519 with FIDO resident credentials
+
+* PIN required [^ssh_key_passphrase_note] [^yubi_example]
+
 ```bash
 ssh-keygen -t ed25519-sk -O resident -O verify-required -C "Yubi-SB"
 ```
+
+[^ssh_key_passphrase_note]:
+    For SSH keys that are created with a FIDO authenticator, a key passphrase may not be very useful. Instead, private key access can be managed using the physical device (with either touch or a PIN).
 
 [^yubi_example]:
     FIDO example with resident credentials derived from [Yubikey article](https://developers.yubico.com/SSH/Securing_SSH_with_FIDO2.html).
