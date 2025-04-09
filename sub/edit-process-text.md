@@ -44,7 +44,7 @@ sed 's/check bounced//g' input-file
 # Convert a comma-delimited file into a pipe-delimited file
 sed 's/,/|/g' input-file
 
-# Insert string constant before fourth line of text file 
+# Insert string constant before fourth line of text file
 sed -i '4i Well hello there' input-file
 
 # Insert parameter value before first line of text file

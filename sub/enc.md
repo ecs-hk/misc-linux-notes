@@ -156,13 +156,13 @@ This is a cleaner approach than exporting the public key, private key, and trust
 
 ```bash
 gpg --list-secret-keys --keyid-format LONG
- 
+
 # Identify the email address associated with the keypair, and then:
 gpg -o secret-keep-safe.gpg --export-options backup --export-secret-keys someguy@buz
- 
+
 # To restore the keypair:
 gpg --import-options restore --import secret-keep-safe.gpg
- 
+
 # Set the trust level for the keypair:
 gpg --edit-key someguy@buz
 gpg> trust
