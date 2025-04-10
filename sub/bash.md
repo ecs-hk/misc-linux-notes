@@ -1,4 +1,4 @@
-# Bash tips
+# Bash idioms
 
 ## Variables and pipelines
 
