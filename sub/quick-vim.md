@@ -32,10 +32,10 @@ Tip: hit `Esc` to enter navigation mode
 
 | Keystroke           | Action |
 | ------------------- | ------ |
-| vim: `u`            | Undo, keep pressing for more undo |
-| vim: `Ctrl-r`       | Redo, keep pressing for more redo |
-| nvi: `u`, `.`       | Undo, press `.` for more undo, or `u` to switch |
-| nvi: `u`, `.`       | Redo, press `.` for more redo, or `u` to switch |
+| vim: `u`            | undo, keep pressing for more undo |
+| vim: `Ctrl-r`       | redo, keep pressing for more redo |
+| nvi: `u`, `.`       | undo, press `.` for more undo, or `u` to switch |
+| nvi: `u`, `.`       | redo, press `.` for more redo, or `u` to switch |
 
 ### Search and replace
 
