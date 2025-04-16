@@ -142,7 +142,7 @@ fill_message_from_cmd() {
         print_debug 'Determining message based on fortune(6) command'
 
         readonly _message="$(fortune -s)"
-        
+
         if [ "${_message:-x}" == "x" ] ; then
                 errout "Problem with fortune output"
         fi
