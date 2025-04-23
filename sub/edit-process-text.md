@@ -71,6 +71,13 @@ sed '/[Oo][Kk]/d' input-file
 wc -L input-file
 ```
 
+## comm recipes
+
+```bash
+# Print matching lines in two sorted files
+comm -12 input-file-a input-file-b
+```
+
 ## Convert tabs to blanks (and vice versa)
 
 * expand(1)
