@@ -135,12 +135,12 @@ granola
 milk
 ```
 
-Move cursor to the "b" in "bananas" and hit `Ctrl+v` then `jjI+-` then `Esc`
+Move cursor to the "b" in "bananas" and hit `Ctrl-v` then `jjI)*` then `Esc`
 
 Explanation:
-* `Ctrl+v` - enter block-wise visual mode
+* `Ctrl-v` - enter block-wise visual mode
 * `jj` - select next two lines
-* `I+-` - insert arbitrary characters (`+-`)
+* `I)*` - insert characters `)*`
 * `Esc` - exit insert mode and apply the change
 
 ### Character delete recipe
@@ -156,10 +156,10 @@ Given the text file:
 # readonly _output="$(mktemp)"
 ```
 
-Move cursor to the "#" before "set" and hit `Ctrl+v` then `ljjj` then `x`
+Move cursor to the "#" before "set" and hit `Ctrl-v` then `ljjj` then `x`
 
 Explanation:
-* `Ctrl+v` - enter block-wise visual mode
+* `Ctrl-v` - enter block-wise visual mode
 * `l` - select the current and next character to the right
 * `jjj` - select next three lines
 * `x` - delete all selected characters
