@@ -135,10 +135,10 @@ granola
 milk
 ```
 
-Move cursor to "bananas" and hit `Ctrl+v` then `jjjI--` then `Esc`
+Move cursor to the "b" in "bananas" and hit `Ctrl+v` then `jjjI++` then `Esc`
 
 Explanation:
 * `Ctrl+v` - enter block-wise visual mode
 * `jjj` - select three lines
-* `I--` - insert two hyphens
+* `I++` - insert two plus symbols
 * `Esc` - exit insert mode and apply the change
