@@ -120,7 +120,7 @@ Move cursor to "this:" and hit `Vjjjjj3>`
 
 Explanation:
 * `V` - enter line-wise visual mode
-* `jjjjj` - select the next five lines
+* `jjjjj` - select next five lines
 * `3>` - move all selected lines three indentations to the right
 
 ### Character insert recipe
@@ -135,12 +135,12 @@ granola
 milk
 ```
 
-Move cursor to the "b" in "bananas" and hit `Ctrl+v` then `jjjI+-` then `Esc`
+Move cursor to the "b" in "bananas" and hit `Ctrl+v` then `jjI+-` then `Esc`
 
 Explanation:
 * `Ctrl+v` - enter block-wise visual mode
-* `jjj` - select three lines
-* `I+-` - insert two arbitrary characters (`I+-`)
+* `jj` - select next two lines
+* `I+-` - insert arbitrary characters (`+-`)
 * `Esc` - exit insert mode and apply the change
 
 ### Character delete recipe
@@ -156,10 +156,10 @@ Given the text file:
 # readonly _output="$(mktemp)"
 ```
 
-Move cursor to the "#" before "set" and hit `Ctrl+v` then `ljjjj` then `x`
+Move cursor to the "#" before "set" and hit `Ctrl+v` then `ljjj` then `x`
 
 Explanation:
 * `Ctrl+v` - enter block-wise visual mode
 * `l` - select the current and next character to the right
-* `jjjj` - select four lines
-* `x` - delete the selected characters
+* `jjj` - select next three lines
+* `x` - delete all selected characters
