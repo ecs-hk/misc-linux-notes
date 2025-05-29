@@ -122,3 +122,23 @@ Explanation:
 * `V` - enter line-wise visual mode
 * `jjjjj` - select the next five lines
 * `3>` - move all selected lines three indentations to the right
+
+### Character insert recipe
+
+Given the text file:
+
+```
+Groceries
+---------
+bananas
+granola
+milk
+```
+
+Move cursor to "bananas" and hit `Ctrl+v` then `jjjI--` then `Esc`
+
+Explanation:
+* `Ctrl+v` - enter block-wise visual mode
+* `jjj` - select three lines
+* `I--` - insert two hyphens
+* `Esc` - exit insert mode and apply the change
