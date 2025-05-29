@@ -135,10 +135,31 @@ granola
 milk
 ```
 
-Move cursor to the "b" in "bananas" and hit `Ctrl+v` then `jjjI++` then `Esc`
+Move cursor to the "b" in "bananas" and hit `Ctrl+v` then `jjjI+-` then `Esc`
 
 Explanation:
 * `Ctrl+v` - enter block-wise visual mode
 * `jjj` - select three lines
-* `I++` - insert two plus symbols
+* `I+-` - insert two arbitrary characters (`I+-`)
 * `Esc` - exit insert mode and apply the change
+
+### Character delete recipe
+
+Given the text file:
+
+```bash
+#!/bin/bash
+
+# set -uo pipefail
+#
+# PATH=/usr/bin:/bin
+# readonly _output="$(mktemp)"
+```
+
+Move cursor to the "#" before "set" and hit `Ctrl+v` then `ljjjj` then `x`
+
+Explanation:
+* `Ctrl+v` - enter block-wise visual mode
+* `l` - select the current and next character to the right
+* `jjjj` - select four lines
+* `x` - delete the selected characters
