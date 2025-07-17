@@ -90,6 +90,14 @@ Tip: entering any of these keystrokes puts you into edit mode
 | `ma` then `y'a`     | mark "buffer a", then copy from "buffer a" to cursor position |
 | `p`, `P`            | paste yanked text after, before cursor |
 
+### Insert-from-file recipe
+
+Insert data (from `nice-shot.txt`) below the current cursor position:
+
+```
+:r nice-shot.txt
+```
+
 ******
 
 ## Visual mode
