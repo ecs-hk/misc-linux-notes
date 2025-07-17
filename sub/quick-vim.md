@@ -47,6 +47,14 @@ Tip: hit `Esc` to enter navigation mode
 | `:%s/boo/baz/g`     | search entire file for boo, replace with baz |
 | `:%s/boo/baz/gc`    | same as above, but prompt before each replace |
 
+### Insert-from-file recipe
+
+Insert data (from `nice-shot.txt`) below the current cursor position:
+
+```
+:r nice-shot.txt
+```
+
 ******
 
 ## Edit mode
@@ -89,14 +97,6 @@ Tip: entering any of these keystrokes puts you into edit mode
 | `yG`                | yank from cursor until end of file |
 | `ma` then `y'a`     | mark "buffer a", then copy from "buffer a" to cursor position |
 | `p`, `P`            | paste yanked text after, before cursor |
-
-### Insert-from-file recipe
-
-Insert data (from `nice-shot.txt`) below the current cursor position:
-
-```
-:r nice-shot.txt
-```
 
 ******
 
