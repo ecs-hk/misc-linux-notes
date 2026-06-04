@@ -137,6 +137,20 @@ tcpdump -nn -A -r foo
 
 # GNUPG
 
+## Symmetric encryption
+
+Encrypt:
+
+```bash
+gpg -c --cipher-algo AES256 data.json
+```
+
+Decrypt:
+
+```bash
+gpg -d data.json.gpg
+```
+
 ## Create a new keypair
 
 ```bash
