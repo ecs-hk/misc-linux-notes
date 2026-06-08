@@ -29,6 +29,12 @@ View issuer (intermediate CA) for cert:
 openssl x509 -in server.pem -noout -subject -issuer -enddate
 ```
 
+View all CAs in chain file:
+```bash
+openssl crl2pkcs7 -nocrl -certfile my-ca.pem |
+openssl pkcs7 -print_certs -noout
+```
+
 View cert on remote system:
 ```bash
 openssl s_client -host somehost.local -port 443
