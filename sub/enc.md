@@ -37,12 +37,12 @@ openssl pkcs7 -print_certs -noout
 
 View cert on remote system:
 ```bash
-openssl s_client -host somehost.local -port 443
+openssl s_client -connect jilin.local:443 < /dev/null
 ```
 
 View just the expiration date on remote system:
 ```bash
-openssl s_client -host somehost.local -port 443 | openssl x509 -noout -dates
+openssl s_client -connect jilin.local:443 | openssl x509 -noout -dates
 ```
 
 View CSR contents:
