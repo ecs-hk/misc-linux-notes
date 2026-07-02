@@ -55,7 +55,7 @@ ssh-keygen -y -f privkey -P ""
 ```
 
 * If unencrypted, public key prints to stdout
-* If encrypted, prompt for passphrase appears
+* If encrypted, "incorrect passphrase" prints to stderr
 
 ## Change (or add) passphrase for private key
 
