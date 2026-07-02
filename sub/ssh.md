@@ -48,6 +48,15 @@ ssh-keygen -vl -f privkey
 ssh-keygen -y -f privkey > pubkey
 ```
 
+## Check if private key is encrypted with passphrase
+
+```bash
+ssh-keygen -y -f privkey -P ""
+```
+
+* If unencrypted, public key prints to stdout
+* If encrypted, prompt for passphrase appears
+
 ## Change (or add) passphrase for private key
 
 ```bash
