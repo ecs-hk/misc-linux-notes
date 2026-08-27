@@ -141,6 +141,32 @@ sudo tcpdump -i ens160 -w foo port 3306 and host 10.69.80.2
 tcpdump -nn -A -r foo
 ```
 
+# Age
+
+Encrypt:
+
+```bash
+age -p data.json > data.json.age
+```
+
+Decrypt:
+
+```bash
+age -d data.json.age > data.json
+```
+
+Or encrypt with pipeline:
+
+```bash
+tar -czf - /path/to/data/ | age -p > /media/foo/archive.tar.gz.age
+```
+
+Decrypt with pipeline:
+
+```bash
+age -d /media/foo/archive.tar.gz.age | tar -xzf -
+```
+
 # GNUPG
 
 ## Symmetric encryption
@@ -148,13 +174,15 @@ tcpdump -nn -A -r foo
 Encrypt:
 
 ```bash
-gpg -c --cipher-algo AES256 data.json
+gpg --symmetric \
+--cipher-algo AES256 --s2k-count 65536 --compress-algo none \
+data.json
 ```
 
 Decrypt:
 
 ```bash
-gpg -d data.json.gpg
+gpg -d data.json.gpg > data.json
 ```
 
 ## Create a new keypair
