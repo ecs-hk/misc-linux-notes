@@ -119,6 +119,8 @@ keytool \
 keytool -list -v -keystore server.jks -storepass 'JKS password'
 ```
 
+******
+
 # tcpdump
 
 ## Confirm encryption on the wire
@@ -141,7 +143,43 @@ sudo tcpdump -i ens160 -w foo port 3306 and host 10.69.80.2
 tcpdump -nn -A -r foo
 ```
 
+******
+
 # Age
+
+## Public-key X25519 encryption
+
+Generate keypair:
+
+```bash
+age-keygen
+```
+
+Encrypt:
+
+```bash
+#!/bin/bash
+
+set -ue
+
+_pubkey='age1aabbccyyz'
+
+age -r "${_pubkey}" -o secret.txt.age secret.txt
+```
+
+Decrypt:
+
+```bash
+#!/bin/bash
+
+set -ue
+
+_private_key_file='private-key'
+
+age -d -i "${_private_key_file}" secret.txt.age > secret.txt
+```
+
+## Symmetric encryption with passphrase
 
 Encrypt:
 
@@ -166,6 +204,8 @@ Decrypt with pipeline:
 ```bash
 age -d /media/foo/archive.tar.gz.age | tar -xzf -
 ```
+
+******
 
 # GNUPG
 
@@ -217,6 +257,8 @@ gpg> trust
 # (enter 5)
 gpg> quit
 ```
+
+******
 
 # Steganography
 
