@@ -324,3 +324,30 @@ In this example, the `cleanup()` function will **always** run when the script ex
 References:
 * https://mywiki.wooledge.org/SignalTrap
 * https://stackoverflow.com/questions/8122779/is-it-necessary-to-specify-traps-other-than-exit
+
+## Working with arrays
+
+Tar:
+
+```bash
+# Quote any array entries with special characters
+readonly -a _files=(
+        /etc/ssh/ssh_known_hosts
+        /usr/local/bin
+        /usr/local/etc/ssh
+)
+
+tar -cz -f nice.tar -- "${_files[@]}"
+```
+
+Iteration:
+
+```bash
+for _f in "${_files[@]}"; do
+        if [ -e "${_f}" ] ; then
+                printf '%s\n' "Nailed it: ${_f}"
+        else
+                printf '%s\n' 'Where is ${_f}?"
+        fi
+done
+```
