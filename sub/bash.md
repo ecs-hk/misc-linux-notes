@@ -347,7 +347,7 @@ for _f in "${_files[@]}" ; do
         if [ -e "${_f}" ] ; then
                 printf '%s\n' "Nailed it: ${_f}"
         else
-                printf '%s\n' 'Where is ${_f}?"
+                printf '%s\n' "Where is ${_f}?"
         fi
 done
 ```
