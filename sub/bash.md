@@ -343,7 +343,7 @@ tar -cz -f nice.tar -- "${_files[@]}"
 Iteration:
 
 ```bash
-for _f in "${_files[@]}"; do
+for _f in "${_files[@]}" ; do
         if [ -e "${_f}" ] ; then
                 printf '%s\n' "Nailed it: ${_f}"
         else
